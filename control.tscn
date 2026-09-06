@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxgb1tmmgcbqm"]
+[gd_scene load_steps=16 format=3 uid="uid://bxgb1tmmgcbqm"]
 
 [ext_resource type="Script" path="res://button_smasher.gd" id="1_1efb0"]
+[ext_resource type="Texture2D" uid="uid://bu7qcro7ekjiy" path="res://images/background-Sheet75.png" id="2_bcsvv"]
 [ext_resource type="Texture2D" uid="uid://bqorwono4qg81" path="res://images/water_bucket.png" id="2_i6rao"]
 [ext_resource type="Texture2D" uid="uid://r0ccdpnvv7m5" path="res://images/backdrop.png" id="2_v6lh5"]
 [ext_resource type="Texture2D" uid="uid://c33f6h66jydsw" path="res://images/water.png" id="4_xffc8"]
@@ -11,6 +12,133 @@
 [sub_resource type="Curve" id="Curve_mff6v"]
 _data = [Vector2(0, 0.527472), 0.0, 0.0, 0, 0, Vector2(0.994382, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Animation" id="Animation_gvoo7"]
+resource_name = "finished!"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("who_thought:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("who_thought:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333, 2.03333, 3.96667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ms36d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("who_thought:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("who_thought:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("seems:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("seems:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e62rf"]
+resource_name = "seems like a good place to stop"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("seems:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("seems:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333, 2, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_me10s"]
+_data = {
+"RESET": SubResource("Animation_ms36d"),
+"finished!": SubResource("Animation_gvoo7"),
+"seems like a good place to stop": SubResource("Animation_e62rf")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_4fasm"]
+font_names = PackedStringArray("Ink Free")
+
+[sub_resource type="Theme" id="Theme_otc1f"]
+default_font = SubResource("SystemFont_4fasm")
+default_font_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_v1wy7"]
+outline_size = 1
+outline_color = Color(0.498039, 1, 1, 1)
+shadow_size = 2
+shadow_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -23,11 +151,13 @@ script = ExtResource("1_1efb0")
 position = Vector2(347, 77)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 347.0
 offset_top = 77.0
 offset_right = 387.0
 offset_bottom = 117.0
+texture = ExtResource("2_bcsvv")
 
 [node name="Button" type="Button" parent="."]
 z_index = 1
@@ -73,6 +203,36 @@ one_shot = true
 [node name="pouring" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_me10s")
+}
+
+[node name="who_thought" type="Label" parent="."]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = 486.0
+offset_top = 311.0
+offset_right = 670.0
+offset_bottom = 326.0
+theme = SubResource("Theme_otc1f")
+text = "huh...who woulda thought?"
+label_settings = SubResource("LabelSettings_v1wy7")
+
+[node name="seems" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+layout_mode = 0
+offset_left = 450.0
+offset_top = 310.0
+offset_right = 675.0
+offset_bottom = 325.0
+theme = SubResource("Theme_otc1f")
+text = "seems like a good place to stop....."
+label_settings = SubResource("LabelSettings_v1wy7")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="button_timer" to="." method="_on_button_timer_timeout"]

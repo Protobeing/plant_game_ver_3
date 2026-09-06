@@ -76,8 +76,10 @@ var images: Array = [
 	preload("res://images/background-Sheet70.png"),
 	preload("res://images/background-Sheet71.png"),
 	preload("res://images/background-Sheet72.png"),
-	preload("res://images/background-Sheet73.png")
-	
+	preload("res://images/background-Sheet73.png"),
+	preload("res://images/background-Sheet74.png"),
+	preload("res://images/background-Sheet75.png")
+
 ]
 
 var pouring = false
@@ -94,17 +96,37 @@ func _process(_delta: float) -> void:
 func _on_button_pressed() -> void:
 	if not button_being_pressed:
 		button_being_pressed = true
-		$button_timer.start()
-		$water_bucket/CPUParticles2D.emitting = true
-		$AudioStreamPlayer2D.playing = true
+		await get_tree().create_timer(1).timeout
+		await cycle_images()
+		button_being_pressed = false
+func cycle_images() -> void:
+	for i in range(4):
 		current_index += 1
 		if current_index >= images.size():
-			current_index = 0
+			
+			$AnimationPlayer.play("finished!")
+			await $AnimationPlayer.animation_finished
 			for child in get_children():
 				if child is TextureRect:
 					child.queue_free()
+			current_index = 0
+			add_image(current_index)
+			return
+		if current_index == 40:
+			button_being_pressed = true
+			$AnimationPlayer.play("seems like a good place to stop")
+			await $AnimationPlayer.animation_finished
+			if not is_inside_tree():
+				return
+			for child in get_children():
+				if child is TextureRect:
+					child.queue_free()
+			add_image(current_index)
+			return
 		add_image(current_index)
+		await get_tree().create_timer(0.1).timeout
 
+			
 func add_image(index: int) -> void:
 	var new_image = TextureRect.new()
 	new_image.texture = images[index]
@@ -122,7 +144,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_button_timer_timeout() -> void:
-	button_being_pressed = false
+	pass
 
 
 func _on_pouring_timeout() -> void:
