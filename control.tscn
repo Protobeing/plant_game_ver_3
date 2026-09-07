@@ -1,14 +1,17 @@
-[gd_scene load_steps=27 format=3 uid="uid://bxgb1tmmgcbqm"]
+[gd_scene load_steps=32 format=3 uid="uid://bxgb1tmmgcbqm"]
 
 [ext_resource type="Script" path="res://button_smasher.gd" id="1_1efb0"]
 [ext_resource type="Texture2D" uid="uid://bqorwono4qg81" path="res://images/water_bucket.png" id="2_i6rao"]
 [ext_resource type="Texture2D" uid="uid://r0ccdpnvv7m5" path="res://images/backdrop.png" id="2_v6lh5"]
 [ext_resource type="Texture2D" uid="uid://c33f6h66jydsw" path="res://images/water.png" id="4_xffc8"]
 [ext_resource type="AudioStream" uid="uid://c6cusx5kcvwvm" path="res://sounds/163731__mrbriandesign__pouring-water-short.wav" id="5_1m1vm"]
+[ext_resource type="AudioStream" uid="uid://dpc55ayfepf2y" path="res://sounds/random (14).wav" id="6_ra21x"]
 [ext_resource type="AudioStream" uid="uid://y2uv8etn1xm" path="res://sounds/735578__pluralz__clapping-large-crowd-at-choir-concert-18.wav" id="6_ygik8"]
+[ext_resource type="AudioStream" uid="uid://dv3ndui1d3d3m" path="res://sounds/end.mp3" id="7_cdt5f"]
 [ext_resource type="AudioStream" uid="uid://ckn5qyyglaowp" path="res://sounds/work_in_progress_jam.mp3" id="7_v2mcy"]
 [ext_resource type="AudioStream" uid="uid://b4eqsiv3oe53w" path="res://sounds/Oak_forest_song_two.mp3" id="8_bovnl"]
 [ext_resource type="AudioStream" uid="uid://b7n0uw0cyn2fc" path="res://sounds/178615__montacue__the-rustle-of-a-bush.wav" id="9_r0etl"]
+[ext_resource type="Texture2D" uid="uid://0lpwavpily5p" path="res://images/cloud.png" id="12_5p04x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41q1f"]
 
@@ -16,32 +19,120 @@
 _data = [Vector2(0, 0.527472), 0.0, 0.0, 0, 0, Vector2(0.994382, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h5i6v"]
+resource_local_to_scene = true
+random_pitch = 1.28
+streams_count = 1
+stream_0/stream = ExtResource("6_ra21x")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ahc5o"]
+streams_count = 1
+stream_0/stream = ExtResource("7_cdt5f")
+
 [sub_resource type="Animation" id="Animation_gvoo7"]
 resource_name = "finished!"
 length = 5.0
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("who_thought:visible")
+tracks/0/path = NodePath("sound_effects")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_h5i6v")
+}],
+"times": PackedFloat32Array(4.16667)
 }
+tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("who_thought:modulate")
+tracks/1/path = NodePath("CPUParticles2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.433333, 2.03333, 3.96667, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.83333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0.517647), Color(0.670588, 1, 1, 0.552941)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles2D:scale_amount_max")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.6, 10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound_effects2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_ahc5o")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasModulate:color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0333333, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.0800419, 0.155229, 0.0706661, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ms36d"]
@@ -49,7 +140,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("who_thought:visible")
+tracks/0/path = NodePath("CPUParticles2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,98 +152,74 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("who_thought:modulate")
+tracks/1/path = NodePath("CPUParticles2D:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0.517647)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("seems:visible")
+tracks/2/path = NodePath("CPUParticles2D:scale_amount_max")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [15.09]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("seems:modulate")
+tracks/3/path = NodePath("CPUParticles2D:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("really:visible")
+tracks/4/path = NodePath(".:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("really:modulate")
+tracks/5/path = NodePath("CanvasModulate:color")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_e62rf"]
 resource_name = "seems like a good place to stop"
 length = 10.0
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("seems:visible")
+tracks/0/path = NodePath("large_crowd")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("seems:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.433333, 2, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("large_crowd")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -160,35 +227,11 @@ tracks/2/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/2/use_blend = true
+tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_nklsu"]
 resource_name = "really?"
 length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("really:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("really:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.433333, 2, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_me10s"]
 _data = {
@@ -292,6 +335,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-70.0, -15.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w7526"]
@@ -403,6 +458,7 @@ libraries = {
 
 [node name="who_thought" type="Label" parent="."]
 visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 3
 layout_mode = 0
 offset_left = 486.0
@@ -458,10 +514,37 @@ libraries = {
 
 [node name="sound_effects" type="AudioStreamPlayer2D" parent="."]
 
+[node name="sound_effects2" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+
 [node name="sound_effectanims" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7g3wi")
 }
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+z_index = 3
+emitting = false
+amount = 50
+randomness = 0.09
+lifetime_randomness = 0.76
+texture = ExtResource("12_5p04x")
+emission_shape = 5
+emission_points = PackedVector2Array(533, 368, 550, 370, 565, 365, 588, 367, 608, 365)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+spread = 130.46
+gravity = Vector2(0, -200)
+initial_velocity_min = 30.3
+initial_velocity_max = 50.5
+scale_amount_min = 0.5
+scale_amount_max = 15.09
+color = Color(1, 1, 1, 0.517647)
+hue_variation_min = -0.65
+hue_variation_max = 0.87
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="button_timer" to="." method="_on_button_timer_timeout"]

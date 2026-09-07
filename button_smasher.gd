@@ -78,7 +78,8 @@ var images: Array = [
 	preload("res://images/background-Sheet72.png"),
 	preload("res://images/background-Sheet73.png"),
 	preload("res://images/background-Sheet74.png"),
-	preload("res://images/background-Sheet75.png")
+	preload("res://images/background-Sheet75.png"),
+	preload("res://images/background-Sheet76.png"),
 
 ]
 
@@ -117,8 +118,8 @@ func cycle_images() -> void:
 			button_being_pressed = true
 			$AnimationPlayer.play("seems like a good place to stop")
 			await $AnimationPlayer.animation_finished
-			if not is_inside_tree():
-				return
+			#if not is_inside_tree():
+				#return
 			for child in get_children():
 				if child is TextureRect:
 					child.queue_free()
