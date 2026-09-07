@@ -1,11 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxgb1tmmgcbqm"]
+[gd_scene load_steps=27 format=3 uid="uid://bxgb1tmmgcbqm"]
 
 [ext_resource type="Script" path="res://button_smasher.gd" id="1_1efb0"]
-[ext_resource type="Texture2D" uid="uid://bu7qcro7ekjiy" path="res://images/background-Sheet75.png" id="2_bcsvv"]
 [ext_resource type="Texture2D" uid="uid://bqorwono4qg81" path="res://images/water_bucket.png" id="2_i6rao"]
 [ext_resource type="Texture2D" uid="uid://r0ccdpnvv7m5" path="res://images/backdrop.png" id="2_v6lh5"]
 [ext_resource type="Texture2D" uid="uid://c33f6h66jydsw" path="res://images/water.png" id="4_xffc8"]
 [ext_resource type="AudioStream" uid="uid://c6cusx5kcvwvm" path="res://sounds/163731__mrbriandesign__pouring-water-short.wav" id="5_1m1vm"]
+[ext_resource type="AudioStream" uid="uid://y2uv8etn1xm" path="res://sounds/735578__pluralz__clapping-large-crowd-at-choir-concert-18.wav" id="6_ygik8"]
+[ext_resource type="AudioStream" uid="uid://ckn5qyyglaowp" path="res://sounds/work_in_progress_jam.mp3" id="7_v2mcy"]
+[ext_resource type="AudioStream" uid="uid://b4eqsiv3oe53w" path="res://sounds/Oak_forest_song_two.mp3" id="8_bovnl"]
+[ext_resource type="AudioStream" uid="uid://b7n0uw0cyn2fc" path="res://sounds/178615__montacue__the-rustle-of-a-bush.wav" id="9_r0etl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41q1f"]
 
@@ -91,10 +94,34 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("really:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("really:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_e62rf"]
 resource_name = "seems like a good place to stop"
-length = 5.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -119,11 +146,55 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("large_crowd")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_ygik8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_nklsu"]
+resource_name = "really?"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("really:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("really:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 2, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_me10s"]
 _data = {
 "RESET": SubResource("Animation_ms36d"),
 "finished!": SubResource("Animation_gvoo7"),
+"really?": SubResource("Animation_nklsu"),
 "seems like a good place to stop": SubResource("Animation_e62rf")
 }
 
@@ -139,6 +210,126 @@ outline_size = 1
 outline_color = Color(0.498039, 1, 1, 1)
 shadow_size = 2
 shadow_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+
+[sub_resource type="Animation" id="Animation_x0jx8"]
+resource_name = "turn_off_drums_turn_on_doom"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("musak:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.03333, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-15.0, -70.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("doomsak:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 7.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-70.0, -15.0]
+}
+
+[sub_resource type="Animation" id="Animation_0f545"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("musak:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-14.857]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("doomsak:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-67.532]
+}
+
+[sub_resource type="Animation" id="Animation_a7cik"]
+resource_name = "turn_off_doomsak_turn_on_musak"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doomsak:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.03333, 6.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-15.0, -70.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("musak:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.03333, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-70.0, -15.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7526"]
+_data = {
+"RESET": SubResource("Animation_0f545"),
+"turn_off_doomsak_turn_on_musak": SubResource("Animation_a7cik"),
+"turn_off_drums_turn_on_doom": SubResource("Animation_x0jx8")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vgv7h"]
+random_pitch = 1.84
+random_volume_offset_db = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("9_r0etl")
+
+[sub_resource type="Animation" id="Animation_xi5ro"]
+resource_name = "growing"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sound_effects")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_vgv7h")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7g3wi"]
+_data = {
+"growing": SubResource("Animation_xi5ro")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -157,7 +348,6 @@ offset_left = 347.0
 offset_top = 77.0
 offset_right = 387.0
 offset_bottom = 117.0
-texture = ExtResource("2_bcsvv")
 
 [node name="Button" type="Button" parent="."]
 z_index = 1
@@ -196,6 +386,8 @@ scale_amount_curve = SubResource("Curve_mff6v")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_1m1vm")
 
+[node name="large_crowd" type="AudioStreamPlayer2D" parent="."]
+
 [node name="button_timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -233,6 +425,43 @@ offset_bottom = 325.0
 theme = SubResource("Theme_otc1f")
 text = "seems like a good place to stop....."
 label_settings = SubResource("LabelSettings_v1wy7")
+
+[node name="really" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+layout_mode = 0
+offset_left = 537.0
+offset_top = 311.0
+offset_right = 762.0
+offset_bottom = 326.0
+theme = SubResource("Theme_otc1f")
+text = "Really?"
+label_settings = SubResource("LabelSettings_v1wy7")
+
+[node name="musak" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(555, 408)
+stream = ExtResource("7_v2mcy")
+volume_db = -14.857
+autoplay = true
+
+[node name="doomsak" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(555, 408)
+stream = ExtResource("8_bovnl")
+volume_db = -67.532
+autoplay = true
+
+[node name="sound_anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w7526")
+}
+
+[node name="sound_effects" type="AudioStreamPlayer2D" parent="."]
+
+[node name="sound_effectanims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7g3wi")
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="button_timer" to="." method="_on_button_timer_timeout"]

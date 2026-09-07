@@ -101,9 +101,10 @@ func _on_button_pressed() -> void:
 		button_being_pressed = false
 func cycle_images() -> void:
 	for i in range(4):
+		$sound_effectanims.play("growing")
 		current_index += 1
 		if current_index >= images.size():
-			
+			$sound_anims.play("turn_off_doomsak_turn_on_musak")
 			$AnimationPlayer.play("finished!")
 			await $AnimationPlayer.animation_finished
 			for child in get_children():
@@ -115,6 +116,18 @@ func cycle_images() -> void:
 		if current_index == 40:
 			button_being_pressed = true
 			$AnimationPlayer.play("seems like a good place to stop")
+			await $AnimationPlayer.animation_finished
+			if not is_inside_tree():
+				return
+			for child in get_children():
+				if child is TextureRect:
+					child.queue_free()
+			add_image(current_index)
+			return
+		if current_index == 48:
+			$sound_anims.play("turn_off_drums_turn_on_doom")
+			button_being_pressed = true
+			$AnimationPlayer.play("really?")
 			await $AnimationPlayer.animation_finished
 			if not is_inside_tree():
 				return
